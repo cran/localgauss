@@ -1,0 +1,4 @@
+
+useDynLib(localgauss)
+export(localgauss,localgauss)
+export(plot.localgauss,localgauss)
