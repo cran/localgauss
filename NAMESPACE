@@ -1,4 +1,4 @@
 
 useDynLib(localgauss)
 export(localgauss,localgauss)
-export(plot.localgauss,localgauss)
+S3method(plot, localgauss)
