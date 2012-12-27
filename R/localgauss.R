@@ -1,12 +1,5 @@
-#######################linking business###########################
+#######################dependences###########################
 
-.First.lib <- function(lib, pkg){
-  library.dynam("localgauss", pkg, lib)
-}
-
-.Last.lib <- function(lib, pkg){
-  library.dynam.unload("localgauss", lib)
-}
 # requrired by the plot-function
 library(ggplot2)
 library(MASS)
