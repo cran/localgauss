@@ -5,9 +5,9 @@
      \description{
      Plots estimates of local Gaussian correlation.  
      }
-     \usage{\method{plot}{localgauss}(x,..., plot.text=TRUE,plot.points=FALSE,
-tsize=3,lowcol="cyan",highcol="magenta",point.col="black",
-point.size=NULL,xlab="",ylab="")
+     \usage{\method{plot}{localgauss}(x,...,plot.text=TRUE,plot.points=FALSE,tsize=3,
+  lowcol="cyan",highcol="magenta",point.col="black",
+  point.size=NULL,xlab="",ylab="",divergent.col.grad=T)
      }
      \arguments{
        \item{x}{S3 object of class "localgauss" produced by the \code{localgauss}-function}
@@ -21,6 +21,8 @@ point.size=NULL,xlab="",ylab="")
        \item{point.size}{The size of observations points if \code{plot.points} 
        is TRUE.}
        \item{xlab,ylab}{The label of x-axis and y-axis, respectively.}
+       \item{divergent.col.grad}{If TRUE, a divergent color gradient between lowcol and highcol with 0 as midpoint is used. 
+       If FALSE a ordinary color gradient between lowcol and highcol is used.}
      }
      
     \references{See Tjoestheim, D. and Hufthammer K. O., 

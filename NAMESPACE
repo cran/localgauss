@@ -1,4 +1,6 @@
 
 useDynLib(localgauss)
 export(localgauss,localgauss)
+export(localgauss.indtest,localgauss)
 S3method(plot, localgauss)
+S3method(plot, localgauss.indtest)

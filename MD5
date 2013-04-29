@@ -1,6 +1,6 @@
-e3634bba9e3a4c206f94a684442ed400 *DESCRIPTION
-72864ca72c51f9f63a2c5525f629a0c1 *NAMESPACE
-1d89172f11580dd3d303f09c73bc0baf *R/localgauss.R
+f7a3bc0292a5d61f0bffbeb0ee4f4f46 *DESCRIPTION
+1c02e0a207ea4125f616052f73765413 *NAMESPACE
+ebfcf8633bbfe48cb89dbeceec1a5202 *R/localgauss.R
 59e73b81c724ec8e72d20f0e7acc6f3f *inst/Makefile
 60072509df77db5f6f1ad5aa6578034b *inst/obfun_dv.f90
 34aa2889cf4c87f051a7af80a3ca3cb7 *inst/obfun_dv.msg
@@ -30,8 +30,10 @@ ffdecac7f748947652ca3692eaf5654e *inst/tapenadehtml/obfun.html
 ef758b28ca8110077acdf3021a8203c2 *inst/tapenadehtml/obfun_dv_dv.html
 0080c12c0d2c9d9211ad7af62074e949 *inst/tapenadehtml/tapenade.css
 6f2bf4ce28ca9354618caec2f4ae83ef *inst/tapenadehtml/tapenade.html
-ac913cad6ef54dea9c85ab8207f3653f *man/localgauss.Rd
-368bae0ad4da46630c150a6b06609f94 *man/plot.localgauss.Rd
+a83f38fa560c40dfb5ec969cc0a2bf4f *man/localgauss.Rd
+43e04c13c57d59a3a536b88a5795664a *man/localgauss.indtest.Rd
+2857332f7ccea5d48e389badd77944d8 *man/plot.localgauss.Rd
+285690be5b770fd75a3ddabfca768f8f *man/plot.localgauss.indtest.Rd
 a10296016f2685db54fb28ced404a642 *src/Makevars
 49df86348c9fc62b97b0b780eb0b868a *src/main.f90
 2a0cae089e092ab54c397894de45b1e4 *src/obfun.f90

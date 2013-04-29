@@ -23,7 +23,7 @@
   the optimizer has not converged and the estimates should not be trusted.
   For more details, see [Reference to article].
 }
-\value{
+\value{S3 object of type \code{localgauss} containing the fields:
   \item{par.est}{M times 5 matrix of parameter estimates, with columns
     mu1,mu2,sigma1,sigma2,rho.}
   \item{eflag}{M-vector of exitflags from the optimizer. Estimations
