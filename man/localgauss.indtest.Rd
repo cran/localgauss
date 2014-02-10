@@ -20,7 +20,8 @@
   \item{test.results}{Vector containing the test results.}
 }
 
- \references{See Tjoestheim, D. and Hufthammer K. O., 
+ \references{Geir Drage Berentsen, Tore Selland Kleppe, Dag Tjostheim,
+        Introducing localgauss, an R Package for Estimating and Visualizing Local Gaussian Correlation, Journal of Statistical Software, 56(12), 1-18, 2014, (http://www.jstatsoft.org/v56/i12/). See also Tjoestheim, D. and Hufthammer K. O., 
 Local Gaussian correlation: A new measure of dependence, Journal of Econometrics,
 172(1),pages 33-48,2013, for a detailed description of local Gaussian correlation
  and Berentsen, G.D. and Tjoestheim D., Recognizing and visualizing departures from independence in bivariate data using local Gaussian correlation,
