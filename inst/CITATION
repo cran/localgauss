@@ -1,0 +1,21 @@
+citHeader("To cite localgauss in publications use:")
+
+citEntry(entry = "Article",
+  title        = "Introducing {localgauss}, an {R} Package for Estimating and Visualizing Local Gaussian Correlation",
+  author       = personList(as.person("Geir Drage Berentsen"),
+                   as.person("Tore Selland Kleppe"),
+                   as.person("Dag Tj{\\o}stheim")),
+  journal      = "Journal of Statistical Software",
+  year         = "2014",
+  volume       = "56",
+  number       = "12",
+  pages        = "1--18",
+  url          = "http://www.jstatsoft.org/v56/i12/",
+
+  textVersion  =
+  paste("Geir Drage Berentsen, Tore Selland Kleppe, Dag Tjostheim (2014).",
+        "Introducing localgauss, an R Package for Estimating and Visualizing Local Gaussian Correlation.",
+        "Journal of Statistical Software, 56(12), 1-18.",
+        "URL http://www.jstatsoft.org/v56/i12/.")
+)
+
