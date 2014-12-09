@@ -212,8 +212,8 @@ localgauss.indtest=function(locobj,R=10,alpha=0.10,seed=1){
 	} #end of qcheck
 	
 	#find lower and upper quantiles for each grid
-	upper=colQuantiles(bootstrap.rho,prob=1-alpha/2)
-	lower=colQuantiles(bootstrap.rho,prob=alpha/2)
+	upper=colQuantiles(bootstrap.rho,probs=1-alpha/2)
+	lower=colQuantiles(bootstrap.rho,probs=alpha/2)
 	
 	#apply qcheck to the sample LGC. Assigns +1 if signifcantly positive, -1 if significantly negative and 0 if neither.
 	test.results=apply(cbind(sample.rho,upper,lower),1,qcheck)

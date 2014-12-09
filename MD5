@@ -1,6 +1,6 @@
-433a80bb968b2e39d65b66fc624b3759 *DESCRIPTION
+e0d95ef671de8c85df6aaa5cf12ee254 *DESCRIPTION
 ca5d2efb93ab8c724ef90d1b03683a43 *NAMESPACE
-ebfcf8633bbfe48cb89dbeceec1a5202 *R/localgauss.R
+4ac1422b55d0a44dc4f2321b1baf044b *R/localgauss.R
 d5e8413e6f658d2b18f16c1eba25eb0c *inst/CITATION
 59e73b81c724ec8e72d20f0e7acc6f3f *inst/Makefile
 60072509df77db5f6f1ad5aa6578034b *inst/obfun_dv.f90
