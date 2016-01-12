@@ -1,6 +1,6 @@
-e0d95ef671de8c85df6aaa5cf12ee254 *DESCRIPTION
+23874123ee26e5dade8ec68d7d758dc9 *DESCRIPTION
 ca5d2efb93ab8c724ef90d1b03683a43 *NAMESPACE
-4ac1422b55d0a44dc4f2321b1baf044b *R/localgauss.R
+e26aac0ecb8122d1ab0aea8e2a5f138b *R/localgauss.R
 d5e8413e6f658d2b18f16c1eba25eb0c *inst/CITATION
 59e73b81c724ec8e72d20f0e7acc6f3f *inst/Makefile
 60072509df77db5f6f1ad5aa6578034b *inst/obfun_dv.f90
@@ -35,7 +35,7 @@ ca018d458b11f162f65f26ee0b15f09f *man/localgauss.Rd
 99be9b2c7ab3487b3523191763faee8e *man/localgauss.indtest.Rd
 d6aa29a163d1de579fd648a4846f415f *man/plot.localgauss.Rd
 ff4ed444829caa6a499bf962a4010366 *man/plot.localgauss.indtest.Rd
-a10296016f2685db54fb28ced404a642 *src/Makevars
+23a5f79a43abd2ee3d030b4c4cb5c9da *src/Makevars
 49df86348c9fc62b97b0b780eb0b868a *src/main.f90
 2a0cae089e092ab54c397894de45b1e4 *src/obfun.f90
 66b5cc6966db6c8323ce3ea6848ce826 *src/obfun_dv.f90

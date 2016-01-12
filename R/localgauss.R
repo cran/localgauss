@@ -137,7 +137,7 @@ plot.localgauss=function(x,..., plot.text=TRUE,plot.points=FALSE,tsize=3,
 	d = data.frame(x=x,y=y,rho=rho,rho.label=rho.label,stringsAsFactors=FALSE)  
 	
 	#Make a ggplot using the geom "tile".
-	g = ggplot() + layer(data=d, mapping=aes(x=x, y=y, fill=rho, label=rho.label),geom="tile") # Plot estimated rho.
+	g = ggplot() + layer(data=d, mapping=aes(x=x, y=y, fill=rho, label=rho.label),geom="tile",stat="identity",position="identity",params=list(na.rm=TRUE)) # Plot estimated rho.
 	
 	# Add a new colour gradient to graph with possible different colours. Either divergent from 0, or continously from lowcol to highcol.
 	lims=c(floor(min(rho)*10),ceiling(max(rho)*10))/10      
@@ -152,13 +152,15 @@ plot.localgauss=function(x,..., plot.text=TRUE,plot.points=FALSE,tsize=3,
 	#Should we overlay the original observations?
 	if(plot.points) 
 		if(is.null(point.size))
-			g = g + layer(data=dat.obs, mapping=aes(x=x.obs,y=y.obs), geom="point", colour=point.col)
+			g = g + layer(data=dat.obs, mapping=aes(x=x.obs,y=y.obs), geom="point",
+                stat="identity",position="identity",params=list(na.rm = TRUE,colour=point.col))
 		else
-			g = g + layer(data=dat.obs, mapping=aes(x=x.obs,y=y.obs), geom="point", colour=point.col,size=point.size)
+			g = g + layer(data=dat.obs, mapping=aes(x=x.obs,y=y.obs), geom="point", stat="identity",position="identity",params=list(colour=point.col,size=point.size,na.rm = TRUE))
 	
 	#Add numerical values of the local correlation to the graph if wanted
 	if(plot.text)
-		g = g + layer(data=d, mapping=aes(x=x, y=y, label=rho.label),geom="text",size=tsize)
+		g = g + layer(stat = "identity",position = "identity",data=d, mapping=aes(x=x, y=y, label=rho.label),geom="text",
+            params=list(size=tsize,na.rm = FALSE))
 	
 	#Add labels
 	g = g + scale_x_continuous(name=xlab)
@@ -266,7 +268,8 @@ point.size=NULL,xlab="",ylab=""){
 	dat = data.frame(x=x,y=y,rho=test)
 	
 	#Plot test results.
-	g = ggplot() + layer(data=dat, mapping=aes(x=x, y=y, fill=rho,labels=rho),geom="tile") 
+	g = ggplot() + layer(data=dat, mapping=aes(x=x, y=y, fill=rho,labels=rho),geom="tile",
+        stat="identity",position="identity",params=list(na.rm=TRUE))
 	
 	#Adjust label
 	g=g+scale_fill_identity(labels = c("+","0","-"), name = "Test results",breaks=col,guide="legend")     
@@ -276,11 +279,13 @@ point.size=NULL,xlab="",ylab=""){
 		if(is.null(point.size))
 			g = g + layer(data=dat.obs, 
 			mapping=aes(x=x.obs,y=y.obs),
-			 geom="point", colour=point.col)
+			 geom="point", params=list(colour=point.col,na.rm=TRUE),
+             stat="identity",position="identity")
 		else
 			g = g + layer(data=dat.obs, 
 			mapping=aes(x=x.obs,y=y.obs),
-			 geom="point", colour=point.col,size=point.size)
+			 geom="point", params=list(colour=point.col,size=point.size,na.rm=TRUE),
+             stat="identity",position="identity")
 	
     #Add x,y labels
 	g = g + scale_x_continuous(name=xlab)
