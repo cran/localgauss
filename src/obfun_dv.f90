@@ -13,48 +13,48 @@ SUBROUTINE LGOBFUN_DV(n, x, y, wts, x0, y0, pp, ppd, hx, hy, ll, lld, cv&
 ! number of data points
   INTEGER, INTENT(IN) :: n
 ! x-data points
-  REAL*8, DIMENSION(n), INTENT(IN) :: x
+  REAL(8), DIMENSION(n), INTENT(IN) :: x
 ! y-data points
-  REAL*8, DIMENSION(n), INTENT(IN) :: y
+  REAL(8), DIMENSION(n), INTENT(IN) :: y
 ! kernel weights of each data point
-  REAL*8, DIMENSION(n), INTENT(IN) :: wts
+  REAL(8), DIMENSION(n), INTENT(IN) :: wts
 ! x-coordinate where local parameters are computed
-  REAL*8, INTENT(IN) :: x0
+  REAL(8), INTENT(IN) :: x0
 ! y-coordinate where local parameters are computed
-  REAL*8, INTENT(IN) :: y0
+  REAL(8), INTENT(IN) :: y0
 ! transformed parameters used by optimizer
-  REAL*8, DIMENSION(5), INTENT(IN) :: pp
-  REAL*8, DIMENSION(5, 5), INTENT(IN) :: ppd
+  REAL(8), DIMENSION(5), INTENT(IN) :: pp
+  REAL(8), DIMENSION(5, 5), INTENT(IN) :: ppd
 ! x-dir bandwidth
-  REAL*8, INTENT(IN) :: hx
+  REAL(8), INTENT(IN) :: hx
 ! y-dir bandwidth
-  REAL*8, INTENT(IN) :: hy
+  REAL(8), INTENT(IN) :: hy
 ! should the input parameters be transformed?
   LOGICAL, INTENT(IN) :: cv
 ! fixed rho?
-  REAL*8, INTENT(IN) :: fixrho
+  REAL(8), INTENT(IN) :: fixrho
 ! objective function out
-  REAL*8, INTENT(OUT) :: ll
-  REAL*8, INTENT(OUT) :: lld(5)
-  REAL*8, DIMENSION(n) :: lgauss
-  REAL*8, DIMENSION(5, n) :: lgaussd
-  REAL*8, DIMENSION(5) :: pars2
-  REAL*8, DIMENSION(5, 5) :: pars2d
-  REAL*8, DIMENSION(1) :: xtmp, ytmp, restmp
-  REAL*8, DIMENSION(5, 1) :: xtmpd, ytmpd, restmpd
-  REAL*8, DIMENSION(5) :: pars
-  REAL*8, DIMENSION(5, 5) :: parsd
-  REAL*8, DIMENSION(n) :: arg1
-  REAL*8, DIMENSION(5, n) :: arg1d
-  REAL*8 :: arg10
-  REAL*8 :: arg10d(5)
+  REAL(8), INTENT(OUT) :: ll
+  REAL(8), INTENT(OUT) :: lld(5)
+  REAL(8), DIMENSION(n) :: lgauss
+  REAL(8), DIMENSION(5, n) :: lgaussd
+  REAL(8), DIMENSION(5) :: pars2
+  REAL(8), DIMENSION(5, 5) :: pars2d
+  REAL(8), DIMENSION(1) :: xtmp, ytmp, restmp
+  REAL(8), DIMENSION(5, 1) :: xtmpd, ytmpd, restmpd
+  REAL(8), DIMENSION(5) :: pars
+  REAL(8), DIMENSION(5, 5) :: parsd
+  REAL(8), DIMENSION(n) :: arg1
+  REAL(8), DIMENSION(5, n) :: arg1d
+  REAL(8) :: arg10
+  REAL(8) :: arg10d(5)
   INTEGER :: nd
   INTEGER :: nbdirs
   INTRINSIC EXP
   INTRINSIC ABS
   INTRINSIC SUM
-  REAL*8 :: abs2
-  REAL*8 :: abs1
+  REAL(8) :: abs2
+  REAL(8) :: abs1
   INTRINSIC SQRT
   ll = 0.0_8
 ! if cv=TRUE; Transform parameters
@@ -181,25 +181,25 @@ SUBROUTINE LOGGAUSSPDF_DV(n, x, y, pars, parsd, res, resd, nbdirs)
    
 !  Hint: 5 should be the maximum number of differentiation directions
   IMPLICIT NONE
-  REAL*8, PARAMETER :: twopi=6.283185307179586e+00_8
+  REAL(8), PARAMETER :: twopi=6.283185307179586e+00_8
   INTEGER, INTENT(IN) :: n
-  REAL*8, DIMENSION(n), INTENT(IN) :: x
-  REAL*8, DIMENSION(n), INTENT(IN) :: y
-  REAL*8, DIMENSION(5), INTENT(IN) :: pars
-  REAL*8, DIMENSION(5, 5), INTENT(IN) :: parsd
-  REAL*8, DIMENSION(n), INTENT(OUT) :: res
-  REAL*8, DIMENSION(5, n), INTENT(OUT) :: resd
-  REAL*8, DIMENSION(n) :: cen1, cen2
-  REAL*8, DIMENSION(5, n) :: cen1d, cen2d
-  REAL*8 :: t1, f1, f2, f12
-  REAL*8 :: t1d(5), f1d(5), f2d(5), f12d(&
+  REAL(8), DIMENSION(n), INTENT(IN) :: x
+  REAL(8), DIMENSION(n), INTENT(IN) :: y
+  REAL(8), DIMENSION(5), INTENT(IN) :: pars
+  REAL(8), DIMENSION(5, 5), INTENT(IN) :: parsd
+  REAL(8), DIMENSION(n), INTENT(OUT) :: res
+  REAL(8), DIMENSION(5, n), INTENT(OUT) :: resd
+  REAL(8), DIMENSION(n) :: cen1, cen2
+  REAL(8), DIMENSION(5, n) :: cen1d, cen2d
+  REAL(8) :: t1, f1, f2, f12
+  REAL(8) :: t1d(5), f1d(5), f2d(5), f12d(&
 &  5)
   REAL(8) :: arg1
   REAL(8) :: arg1d(5)
   REAL(8) :: result1
   REAL(8) :: result1d(5)
-  REAL*8 :: arg2
-  REAL*8 :: arg2d(5)
+  REAL(8) :: arg2
+  REAL(8) :: arg2d(5)
   INTEGER :: nd
   INTEGER :: nbdirs
   INTRINSIC LOG

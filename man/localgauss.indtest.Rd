@@ -21,7 +21,8 @@
 }
 
  \references{Geir Drage Berentsen, Tore Selland Kleppe, Dag Tjostheim,
-        Introducing localgauss, an R Package for Estimating and Visualizing Local Gaussian Correlation, Journal of Statistical Software, 56(12), 1-18, 2014, (http://www.jstatsoft.org/v56/i12/). See also Tjoestheim, D. and Hufthammer K. O., 
+Introducing localgauss, an R Package for Estimating and Visualizing Local Gaussian Correlation, Journal of Statistical Software, 56(12), 1-18, 2014, (http://www.jstatsoft.org/v56/i12/). Note that
+for compability reasons, the graphics routines described in the paper have been taken out from release 0.40. See also Tjoestheim, D. and Hufthammer K. O.,
 Local Gaussian correlation: A new measure of dependence, Journal of Econometrics,
 172(1),pages 33-48,2013, for a detailed description of local Gaussian correlation
  and Berentsen, G.D. and Tjoestheim D., Recognizing and visualizing departures from independence in bivariate data using local Gaussian correlation,
@@ -31,7 +32,7 @@ http://people.uib.no/gbe062/local-gaussian-correlation/ for a description of the
 
 
  \seealso{
-       \code{\link{plot.localgauss.indtest}}.
+       \code{\link{localgauss}}.
      }
 
 \examples{
@@ -39,7 +40,7 @@ http://people.uib.no/gbe062/local-gaussian-correlation/ for a description of the
     y=x^2 + rnorm(n=100)
     lgobj = localgauss(x,y,gsize=8)
     lgind = localgauss.indtest(lgobj)
-    plot(lgind)
+
 }
 
 \keyword{localgauss}

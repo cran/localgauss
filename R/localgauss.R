@@ -1,7 +1,7 @@
 #######################dependences###########################
 
 # requrired by the plot-functions
-library(ggplot2)
+#library(ggplot2)
 library(MASS)
 # required by independence test bootstrap
 library(foreach)
@@ -102,74 +102,8 @@ attr(ret,"class") <- "localgauss"
 return(ret);
 }
 
-######################plot.localgauss###################################
-
-# lgobj:                "localgauss" object from function localgauss
-# plot.text:            Should the numerical local correlation value be printed on each tile?
-# plot.points:          Should the original observation points be overlain?
-# tsize:                Font size used if plot.text is true.
-# lowcol:               Colour used to indicate small values of correlation.                                 <---updated
-# highcol:              Colour used to indicate large values of corelation.                                  <---updated
-# point.col:            Color used for observations points (if plot.points is true).
-# point.size:           Size of observations points (if plot.points is true).
-# xlab:                 label of x-axis.
-# ylab:                 label of y-axis.
-# divergent.col.grad: 
 
 
-plot.localgauss=function(x,..., plot.text=TRUE,plot.points=FALSE,tsize=3,
-  lowcol="cyan",highcol="magenta",point.col="black",
-  point.size=NULL,xlab="",ylab="",divergent.col.grad=T){
-	# to provide consistency with S3 generic functions
-	lgobj = x
-	# Dummies to trick R CMD check 
-	x.obs <- NULL; rm(x.obs);
-	y.obs <- NULL; rm(y.obs);
-	#Objects to plot.
-	dat.obs = data.frame(x.obs=lgobj$x,y.obs=lgobj$y)
-	rho = lgobj$par.est[,5]
-	x = lgobj$xy.mat[,1]
-	y = lgobj$xy.mat[,2]
-	
-	#Format rho with leading sign.
-	rho.label = formatC(rho,digits=2, format="f",flag="+")                      
-	#Dataframe for plotting rho.
-	d = data.frame(x=x,y=y,rho=rho,rho.label=rho.label,stringsAsFactors=FALSE)  
-	
-	#Make a ggplot using the geom "tile".
-	g = ggplot() + layer(data=d, mapping=aes(x=x, y=y, fill=rho, label=rho.label),geom="tile",stat="identity",position="identity",params=list(na.rm=TRUE)) # Plot estimated rho.
-	
-	# Add a new colour gradient to graph with possible different colours. Either divergent from 0, or continously from lowcol to highcol.
-	lims=c(floor(min(rho)*10),ceiling(max(rho)*10))/10      
-	breaks = seq(lims[1],lims[2],by=(lims[2]-lims[1])/10)  #adjust breaks after the range of rho
-	if(divergent.col.grad)
-	gr = scale_fill_gradient2(midpoint=0,low=lowcol, high=highcol, space="Lab", limits=lims,breaks=breaks)	
-	else
-	gr=scale_fill_gradient(low = lowcol, high = highcol, space = "Lab",limits=lims, breaks=breaks)	
-	
-    g = g + gr 
-	
-	#Should we overlay the original observations?
-	if(plot.points) 
-		if(is.null(point.size))
-			g = g + layer(data=dat.obs, mapping=aes(x=x.obs,y=y.obs), geom="point",
-                stat="identity",position="identity",params=list(na.rm = TRUE,colour=point.col))
-		else
-			g = g + layer(data=dat.obs, mapping=aes(x=x.obs,y=y.obs), geom="point", stat="identity",position="identity",params=list(colour=point.col,size=point.size,na.rm = TRUE))
-	
-	#Add numerical values of the local correlation to the graph if wanted
-	if(plot.text)
-		g = g + layer(stat = "identity",position = "identity",data=d, mapping=aes(x=x, y=y, label=rho.label),geom="text",
-            params=list(size=tsize,na.rm = FALSE))
-	
-	#Add labels
-	g = g + scale_x_continuous(name=xlab)
-	g = g + scale_y_continuous(name=ylab)
-		
-	# Return plot
-	return(g)
-	
-}
 
 #localgauss.indtest     Pointwise Independence test based on LGC.
 
@@ -228,72 +162,5 @@ localgauss.indtest=function(locobj,R=10,alpha=0.10,seed=1){
 }   #end of localgauss.indtest
 
 
-
-#plot.localgauss.indtest             Plots the result of a local independence test
-
-# indtestobj:   "localgauss.indtest" object from function localgauss.indtest
-# plot.points: Should the original observation points be overlain?
-# poscol:      Colour used to indicate significantly positive correlation
-# negcol:      Colour used to indicate significantly negative correlation
-# point.col:   Color used for observations points (if plot.points is true).
-# point.size:  Size of observations points (if plot.points is true).
-# xlab:        label of x-axis.
-# ylab:        label of y-axis.
-
-
-plot.localgauss.indtest=function(x,...,plot.points=F,
-poscol="magenta",negcol="cyan",point.col="black",
-point.size=NULL,xlab="",ylab=""){
-	# for consistency with S3 generic functions
-	indtestobj = x
-	# Dummies to trick R CMD check 
-	rho <- NULL; rm(rho); 
-	x.obs <- NULL; rm(x.obs);
-	y.obs <- NULL; rm(y.obs); 
-	#First get the objects to plot.
-	test = indtestobj$test.results
-	x = indtestobj$localgauss$xy.mat[,1]
-	y = indtestobj$localgauss$xy.mat[,2]
-
-	dat.obs = data.frame(x.obs=indtestobj$localgauss$x,y.obs=indtestobj$localgauss$y)
-	
-	#Attach colour strings to the results of the test
-	test[test==1]=poscol
-	test[test==-1]=negcol
-	test[test==0]="white"
-	
-	col=c(poscol,"white",negcol)
-	
-	#Put the test results with corresponding coordinates into a dataframe
-	dat = data.frame(x=x,y=y,rho=test)
-	
-	#Plot test results.
-	g = ggplot() + layer(data=dat, mapping=aes(x=x, y=y, fill=rho,labels=rho),geom="tile",
-        stat="identity",position="identity",params=list(na.rm=TRUE))
-	
-	#Adjust label
-	g=g+scale_fill_identity(labels = c("+","0","-"), name = "Test results",breaks=col,guide="legend")     
-	
-	#Should we overlay the original observations?
-	if(plot.points) 
-		if(is.null(point.size))
-			g = g + layer(data=dat.obs, 
-			mapping=aes(x=x.obs,y=y.obs),
-			 geom="point", params=list(colour=point.col,na.rm=TRUE),
-             stat="identity",position="identity")
-		else
-			g = g + layer(data=dat.obs, 
-			mapping=aes(x=x.obs,y=y.obs),
-			 geom="point", params=list(colour=point.col,size=point.size,na.rm=TRUE),
-             stat="identity",position="identity")
-	
-    #Add x,y labels
-	g = g + scale_x_continuous(name=xlab)
-	g = g + scale_y_continuous(name=ylab)
-	
-	#Return plot
-	return(g)
-	
-	} #end of plot.localgauss.indtest
 
 

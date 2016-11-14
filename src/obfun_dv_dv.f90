@@ -19,64 +19,64 @@ SUBROUTINE LGOBFUN_DV_DV(n, x, y, wts, x0, y0, pp, ppd0, ppd, hx, hy, ll&
 ! number of data points
   INTEGER, INTENT(IN) :: n
 ! x-data points
-  REAL*8, DIMENSION(n), INTENT(IN) :: x
+  REAL(8), DIMENSION(n), INTENT(IN) :: x
 ! y-data points
-  REAL*8, DIMENSION(n), INTENT(IN) :: y
+  REAL(8), DIMENSION(n), INTENT(IN) :: y
 ! kernel weights of each data point
-  REAL*8, DIMENSION(n), INTENT(IN) :: wts
+  REAL(8), DIMENSION(n), INTENT(IN) :: wts
 ! x-coordinate where local parameters are computed
-  REAL*8, INTENT(IN) :: x0
+  REAL(8), INTENT(IN) :: x0
 ! y-coordinate where local parameters are computed
-  REAL*8, INTENT(IN) :: y0
+  REAL(8), INTENT(IN) :: y0
 ! transformed parameters used by optimizer
-  REAL*8, DIMENSION(5), INTENT(IN) :: pp
-  REAL*8, DIMENSION(5, 5), INTENT(IN) :: ppd0
-  REAL*8, DIMENSION(5, 5), INTENT(IN) :: ppd
+  REAL(8), DIMENSION(5), INTENT(IN) :: pp
+  REAL(8), DIMENSION(5, 5), INTENT(IN) :: ppd0
+  REAL(8), DIMENSION(5, 5), INTENT(IN) :: ppd
 ! x-dir bandwidth
-  REAL*8, INTENT(IN) :: hx
+  REAL(8), INTENT(IN) :: hx
 ! y-dir bandwidth
-  REAL*8, INTENT(IN) :: hy
+  REAL(8), INTENT(IN) :: hy
 ! should the input parameters be transformed?
   LOGICAL, INTENT(IN) :: cv
 ! fixed rho?
-  REAL*8, INTENT(IN) :: fixrho
+  REAL(8), INTENT(IN) :: fixrho
 ! objective function out
-  REAL*8, INTENT(OUT) :: ll
-  REAL*8, INTENT(OUT) :: lld(5)
-  REAL*8, INTENT(OUT) :: lldd(5, 5)
-  REAL*8, DIMENSION(n) :: lgauss
-  REAL*8, DIMENSION(5, n) :: lgaussd0
-  REAL*8, DIMENSION(5, n) :: lgaussd
-  REAL*8, DIMENSION(5, 5, n) :: lgaussdd
-  REAL*8, DIMENSION(5) :: pars2
-  REAL*8, DIMENSION(5, 5) :: pars2d0
-  REAL*8, DIMENSION(5, 5) :: pars2d
-  REAL*8, DIMENSION(5, 5, 5) :: pars2dd
-  REAL*8, DIMENSION(1) :: xtmp, ytmp, restmp
-  REAL*8, DIMENSION(5, 1) :: xtmpd0, ytmpd0, restmpd0
-  REAL*8, DIMENSION(5, 1) :: xtmpd, ytmpd, restmpd
-  REAL*8, DIMENSION(5, 5, 1) :: restmpdd
-  REAL*8, DIMENSION(5) :: pars
-  REAL*8, DIMENSION(5, 5) :: parsd0
-  REAL*8, DIMENSION(5, 5) :: parsd
-  REAL*8, DIMENSION(5, 5, 5) :: parsdd
-  REAL*8, DIMENSION(n) :: arg1
-  REAL*8, DIMENSION(5, n) :: arg1d
-  REAL*8, DIMENSION(5, 5, n) :: arg1dd
-  REAL*8 :: arg10
-  REAL*8 :: arg10d0(5)
-  REAL*8 :: arg10d(5)
-  REAL*8 :: arg10dd(5, 5)
+  REAL(8), INTENT(OUT) :: ll
+  REAL(8), INTENT(OUT) :: lld(5)
+  REAL(8), INTENT(OUT) :: lldd(5, 5)
+  REAL(8), DIMENSION(n) :: lgauss
+  REAL(8), DIMENSION(5, n) :: lgaussd0
+  REAL(8), DIMENSION(5, n) :: lgaussd
+  REAL(8), DIMENSION(5, 5, n) :: lgaussdd
+  REAL(8), DIMENSION(5) :: pars2
+  REAL(8), DIMENSION(5, 5) :: pars2d0
+  REAL(8), DIMENSION(5, 5) :: pars2d
+  REAL(8), DIMENSION(5, 5, 5) :: pars2dd
+  REAL(8), DIMENSION(1) :: xtmp, ytmp, restmp
+  REAL(8), DIMENSION(5, 1) :: xtmpd0, ytmpd0, restmpd0
+  REAL(8), DIMENSION(5, 1) :: xtmpd, ytmpd, restmpd
+  REAL(8), DIMENSION(5, 5, 1) :: restmpdd
+  REAL(8), DIMENSION(5) :: pars
+  REAL(8), DIMENSION(5, 5) :: parsd0
+  REAL(8), DIMENSION(5, 5) :: parsd
+  REAL(8), DIMENSION(5, 5, 5) :: parsdd
+  REAL(8), DIMENSION(n) :: arg1
+  REAL(8), DIMENSION(5, n) :: arg1d
+  REAL(8), DIMENSION(5, 5, n) :: arg1dd
+  REAL(8) :: arg10
+  REAL(8) :: arg10d0(5)
+  REAL(8) :: arg10d(5)
+  REAL(8) :: arg10dd(5, 5)
   INTEGER :: nd
   INTEGER :: nbdirs
   INTRINSIC EXP
   INTRINSIC ABS
   INTRINSIC SUM
-  REAL*8 :: abs2
-  REAL*8 :: abs1
+  REAL(8) :: abs2
+  REAL(8) :: abs1
   INTRINSIC SQRT
-  REAL*8 :: result1
-  REAL*8 :: result1d(5)
+  REAL(8) :: result1
+  REAL(8) :: result1d(5)
   INTEGER :: nd0
   INTEGER :: nbdirs0
   ll = 0.0_8
@@ -375,46 +375,46 @@ SUBROUTINE LOGGAUSSPDF_DV_DV(n, x, y, pars, parsd0, parsd, parsdd, res, &
    
 !  Hint: 5 should be the maximum number of differentiation directions
   IMPLICIT NONE
-  REAL*8, PARAMETER :: twopi=6.283185307179586e+00_8
+  REAL(8), PARAMETER :: twopi=6.283185307179586e+00_8
   INTEGER, INTENT(IN) :: n
-  REAL*8, DIMENSION(n), INTENT(IN) :: x
-  REAL*8, DIMENSION(n), INTENT(IN) :: y
-  REAL*8, DIMENSION(5), INTENT(IN) :: pars
-  REAL*8, DIMENSION(5, 5), INTENT(IN) :: parsd0
-  REAL*8, DIMENSION(5, 5), INTENT(IN) :: parsd
-  REAL*8, DIMENSION(5, 5, 5), INTENT(IN) :: parsdd
-  REAL*8, DIMENSION(n), INTENT(OUT) :: res
-  REAL*8, DIMENSION(5, n), INTENT(OUT) :: resd0
-  REAL*8, DIMENSION(5, n), INTENT(OUT) :: resd
-  REAL*8, DIMENSION(5, 5, n), INTENT(OUT) :: resdd
-  REAL*8, DIMENSION(n) :: cen1, cen2
-  REAL*8, DIMENSION(5, n) :: cen1d0, cen2d0
-  REAL*8, DIMENSION(5, n) :: cen1d, cen2d
-  REAL*8, DIMENSION(5, 5, n) :: cen1dd, cen2dd
-  REAL*8 :: t1, f1, f2, f12
-  REAL*8 :: t1d0(5), f1d0(5), f2d0(5), f12d0(&
+  REAL(8), DIMENSION(n), INTENT(IN) :: x
+  REAL(8), DIMENSION(n), INTENT(IN) :: y
+  REAL(8), DIMENSION(5), INTENT(IN) :: pars
+  REAL(8), DIMENSION(5, 5), INTENT(IN) :: parsd0
+  REAL(8), DIMENSION(5, 5), INTENT(IN) :: parsd
+  REAL(8), DIMENSION(5, 5, 5), INTENT(IN) :: parsdd
+  REAL(8), DIMENSION(n), INTENT(OUT) :: res
+  REAL(8), DIMENSION(5, n), INTENT(OUT) :: resd0
+  REAL(8), DIMENSION(5, n), INTENT(OUT) :: resd
+  REAL(8), DIMENSION(5, 5, n), INTENT(OUT) :: resdd
+  REAL(8), DIMENSION(n) :: cen1, cen2
+  REAL(8), DIMENSION(5, n) :: cen1d0, cen2d0
+  REAL(8), DIMENSION(5, n) :: cen1d, cen2d
+  REAL(8), DIMENSION(5, 5, n) :: cen1dd, cen2dd
+  REAL(8) :: t1, f1, f2, f12
+  REAL(8) :: t1d0(5), f1d0(5), f2d0(5), f12d0(&
 &  5)
-  REAL*8 :: t1d(5), f1d(5), f2d(5), f12d(5)
-  REAL*8 :: t1dd(5, 5), f1dd(5, 5), f2dd(5, 5), &
+  REAL(8) :: t1d(5), f1d(5), f2d(5), f12d(5)
+  REAL(8) :: t1dd(5, 5), f1dd(5, 5), f2dd(5, 5), &
 &  f12dd(5, 5)
-  REAL*8 :: arg1
-  REAL*8 :: arg1d0(5)
-  REAL*8 :: arg1d(5)
-  REAL*8 :: arg1dd(5, 5)
-  REAL*8 :: result1
-  REAL*8 :: result1d0(5)
-  REAL*8 :: result1d(5)
-  REAL*8 :: result1dd(5, 5)
-  REAL*8 :: arg2
-  REAL*8 :: arg2d0(5)
-  REAL*8 :: arg2d(5)
-  REAL*8 :: arg2dd(5, 5)
+  REAL(8) :: arg1
+  REAL(8) :: arg1d0(5)
+  REAL(8) :: arg1d(5)
+  REAL(8) :: arg1dd(5, 5)
+  REAL(8) :: result1
+  REAL(8) :: result1d0(5)
+  REAL(8) :: result1d(5)
+  REAL(8) :: result1dd(5, 5)
+  REAL(8) :: arg2
+  REAL(8) :: arg2d0(5)
+  REAL(8) :: arg2d(5)
+  REAL(8) :: arg2dd(5, 5)
   INTEGER :: nd
   INTEGER :: nbdirs
   INTRINSIC LOG
   INTRINSIC SQRT
-  REAL*8 :: result10
-  REAL*8 :: result10d(5)
+  REAL(8) :: result10
+  REAL(8) :: result10d(5)
   INTEGER :: nd0
   INTEGER :: nbdirs0
   t1 = -(0.5_8/(1.0_8-pars(5)**2))
