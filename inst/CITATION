@@ -10,12 +10,12 @@ citEntry(entry = "Article",
   volume       = "56",
   number       = "12",
   pages        = "1--18",
-  url          = "http://www.jstatsoft.org/v56/i12/",
+  url          = "https://doi.org/10.18637/jss.v056.i12",
 
   textVersion  =
   paste("Geir Drage Berentsen, Tore Selland Kleppe, Dag Tjostheim (2014).",
         "Introducing localgauss, an R Package for Estimating and Visualizing Local Gaussian Correlation.",
         "Journal of Statistical Software, 56(12), 1-18.",
-        "URL http://www.jstatsoft.org/v56/i12/.")
+        "URL https://doi.org/10.18637/jss.v056.i12")
 )
 

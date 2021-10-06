@@ -1,9 +1,11 @@
-
+S3method(plot,localgauss)
 useDynLib(localgauss)
 
 import(MASS)
 import(foreach)
 import(matrixStats)
+import(ggplot2)
 
 export(localgauss,localgauss)
 export(localgauss.indtest,localgauss)
+export(plot.localgauss,localgauss)
